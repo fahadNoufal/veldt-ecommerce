@@ -1,0 +1,63 @@
+/* ─── Reset & tokens ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:           #F5F3F0;
+  --white:        #FFFFFF;
+  --t1:           #1C1A17;
+  --t2:           #7A7570;
+  --t3:           #B5AFA8;
+  --accent:       #9B8B75;
+  --accent-rgb:   155, 139, 117;
+  --accent-dark:  #6B5D4E;
+  --border:       #E5E0D8;
+  --border-light: #EDE9E3;
+  --err:          #C0392B;
+  --ok:           #27AE60;
+  --r:            4px;
+  --rlg:          14px;
+  --sh:           0 2px 12px rgba(0,0,0,.07);
+  --sh-lg:        0 8px 40px rgba(0,0,0,.14);
+}
+
+html  { scroll-behavior: smooth; }
+body  { font-family: 'Jost', sans-serif; background: var(--bg); color: var(--t1); min-height: 100vh; }
+img   { display: block; }
+button, input, select, textarea { font-family: inherit; }
+
+/* ─── Fly-to-cart particle ────────────────────────────────────────────────── */
+@keyframes flyCart {
+  0%   { opacity: 1; transform: scale(1)   translate(0, 0); }
+  100% { opacity: 0; transform: scale(.3)  translate(var(--fx), var(--fy)); }
+}
+.fly-particle {
+  position: fixed;
+  width: 42px; height: 52px;
+  border-radius: 6px;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 9999;
+  animation: flyCart .55s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+/* ─── Shared spinner ─────────────────────────────────────────────────────── */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner-wrap { display: flex; justify-content: center; align-items: center; padding: 80px 0; }
+.spinner      { width: 36px; height: 36px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .7s linear infinite; }
+
+/* ─── Shared toast ───────────────────────────────────────────────────────── */
+@keyframes toastin { from { opacity:0; transform:translateX(-50%) translateY(8px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
+.toast     { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); background: var(--t1); color: #fff; padding: 11px 20px; border-radius: 30px; font-size: 13px; z-index: 600; animation: toastin .25s; white-space: nowrap; }
+.toast.err { background: var(--err); }
+
+/* ─── Shared animations ──────────────────────────────────────────────────── */
+@keyframes fadein  { from { opacity:0; } to { opacity:1; } }
+@keyframes slideup { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+
+/* ─── Stars ──────────────────────────────────────────────────────────────── */
+.stars { display: inline-flex; gap: 1px; font-size: 11px; }
+
+/* ─── Layout ─────────────────────────────────────────────────────────────── */
+.main          { max-width: 1440px; margin: 0 auto; padding: 12px 28px 40px; }
+.main-stylist  { padding: 0; height: calc(100vh - 64px); overflow: hidden; }
+@media (max-width: 768px) { .main { padding-left: 20px; padding-right: 20px; } }

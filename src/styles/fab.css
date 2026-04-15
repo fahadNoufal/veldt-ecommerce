@@ -1,0 +1,98 @@
+/* ── AI Stylist Floating Action Button ────────────────────────────────────── */
+@keyframes fab-appear  { from{opacity:0;transform:translateY(16px) scale(.9)} to{opacity:1;transform:translateY(0) scale(1)} }
+@keyframes fab-ripple  { 0%{transform:scale(1);opacity:.5} 100%{transform:scale(2.2);opacity:0} }
+@keyframes fab-glow    { 0%,100%{box-shadow:0 8px 32px rgba(28,23,20,.28)} 50%{box-shadow:0 12px 44px rgba(107,93,78,.52)} }
+@keyframes fab-pulse   { 0%,100%{opacity:1} 50%{opacity:.35} }
+@keyframes fab-spark   { 0%,100%{transform:rotate(0deg) scale(1)} 50%{transform:rotate(20deg) scale(1.15)} }
+
+.stylist-fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 300;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: #1C1A17;
+  color: #FAF7F2;
+  border: none;
+  border-radius: 50px;
+  padding: 11px 18px 11px 13px;
+  cursor: pointer;
+
+  font-family: 'Jost', sans-serif;
+
+  animation: fab-appear .45s .3s cubic-bezier(.34,1.56,.64,1) both,
+             fab-glow 4s 1s ease-in-out infinite;
+
+  transition: transform .18s ease, background .2s ease;
+}
+
+.stylist-fab:hover {
+  transform: translateY(-3px) scale(1.03);
+  background: #2C2520;
+}
+.stylist-fab:active { transform: scale(.97); }
+
+/* Animated outer ring */
+.fab-ring {
+  position: absolute;
+  inset: -1px;
+  border-radius: 50px;
+  border: 1.5px solid rgba(155,139,117,.4);
+  animation: fab-ripple 2.8s ease-out 1.2s infinite;
+  pointer-events: none;
+}
+
+/* Spark icon */
+.fab-icon {
+  font-size: 17px;
+  line-height: 1;
+  animation: fab-spark 3s ease-in-out infinite;
+  flex-shrink: 0;
+  color: #C4956A;
+}
+
+/* Text block */
+.fab-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+.fab-label {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: #FAF7F2;
+}
+.fab-sub {
+  font-size: 10px;
+  color: rgba(250,247,242,.45);
+  letter-spacing: .06em;
+  line-height: 1;
+}
+
+/* Online dot */
+.fab-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #7BC67E;
+  flex-shrink: 0;
+  animation: fab-pulse 2s ease-in-out infinite;
+}
+
+@media (max-width: 480px) {
+  .stylist-fab {
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 14px 10px 11px;
+  }
+  .fab-label { font-size: 12px; }
+  .fab-sub   { display: none; }
+}
