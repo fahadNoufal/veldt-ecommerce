@@ -1,0 +1,9 @@
+name            = "veldt-proxy"
+main            = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Enable WebSocket hibernation API (required for WS proxying)
+[limits]
+cpu_ms = 50
+
+# No KV / D1 / R2 needed — pure proxy worker
